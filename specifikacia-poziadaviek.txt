@@ -1,0 +1,660 @@
+FAKULTA MATEMATIKY FYZIKY A INFORMATIKY UNOVERZITA KOMENSKÉHO
+ŠPECIFIKÁCIA POŽIADAVIEK NA WEB APLIKÁCIU
+Štatistiky z frisbee  turnajov
+zimný semester 2015/2016
+Lukáš Danko
+Peter Daráš
+Dušan Matejka
+Viktor Nagy
+
+Obsah
+1 Úvod 	1
+1.1Predmet špecifikácie	1
+1.2Rozsah projektu a funkcie systému	1
+1.3Slovník pojmov, Skratky	1
+
+2 Celkový opis	2
+2.1 Kontext systému	2
+2.2 Systémové rozhrania	3
+2.3 Používateľské rozhrania	3
+2.4 Softvérové rozdrania	3
+2.5 Iné požiadavky 	3
+2.6 Funkcie systému	4
+2.7 Triedy používateľov a ich vlastnosti	4
+
+
+3 Špecifikácia požiadaviek	5
+3.1 Turnaj CRUD	5
+		3.1.1 Popis prípadu použitia	5
+		3.1.2 Funkčné požiadavky	6
+3.2 Hromadná editácia turnajov	6
+		3.2.1 Popis prípadu použitia	6
+		3.2.2 Funkčné požiadavky	7
+3.3 Kluby CRUD	8
+		3.3.1 Popis prípadu použitia	8
+		3.3.2 Funkčné požiadavky	8
+3.4 Kategórie CRUD	9
+		3.4.1 Popis prípadu použitia	9
+		3.4.2 Funkčné požiadavky	9
+
+3.5 Hráči CRUD	10
+		3.5.1 Popis prípadu použitia	10
+		3.5.2 Funkčné požiadavky	10
+
+3.6 Zobrazenie reportov	11
+		3.6.1 Popis prípadu použitia	11
+		3.6.2 Funkčné požiadavky	11
+
+4 Ďalšie požiadavky	12
+4.1 Výkonnostné požiadavky	12
+4.2 Dostupnosť	12
+4.3 Bezpečnostné požiadavky	12
+
+Príloha A: Dátový slovník	13
+1. Úvod
+1.1. Predmet špecifikácie
+Táto špecifikácia požiadaviek na softvér (ďalej ŠPS) popisuje používateľské, funkčné a parametrické požiadavky prvej verzie systému pre online systém zaznamenávania výsledkov frisbee turnajov. Tento dokument je určený tímu, ktorý bude projekt implementovať. Špecifikácia je vytvorená po dohode so zadávateľom na základe jeho požiadaviek.
+1.2. Rozsah projektu a funkcie systému
+Projekt vo svojej plnej verzii bude poskytovať služby, aké poskytuje stránka v terajšej podobe v čase písania tejto špecifikácie (http://www.outsiterz.org/turnaje/), teda bude evidovať hráčov, ich mená, príslušnosť k tímu ako aj klubu. Ďalej bude obsahovať výsledky zápasov medzi tímami ako aj podrobnosti o turnajoch napríklad miesto konania, či kategórii  ktoré klub vyšle na turnaj. Stránka v terajšej podobe je zadávateľovi nevyhovujúca a preto požaduje jej re design funkčnosti a znovu premyslenie dátového modelu, ktorý umožní jednoduchšie vkladanie dát a väčšiu prehľadnosť pri ich čítaní  
+
+1.3. Slovník pojmov, Skratky
+Frisbee ultimate
+Nekontaktná hra podobná rugby s diskom frisbee
+Kat. mixed
+Kategória kde proti sebe hrajú ženy aj muži 
+Kat. open
+Kategória kde hrajú iba muži
+Zadávač
+Jeden zo 4 možných typov užívateľov, ktorý má právo na pridávanie užívateľov
+Spirit 
+Body za fair-play hru
+
+
+
+
+
+
+
+
+
+
+2. Celkový opis
+1. 
+2. 
+2.1. Kontext systému
+Používateľ bude môcť zapisovať/editovať dáta v databáze ak ma na to určené práva, inak bude môcť používateľ dáta iba prezerať. Aplikácia komunikuje z databázou a zobrazuje používateľovi dáta v nej uložené. 
+
+
+2.2. Systémové rozhrania
+
+1. 
+1. 
+1.1. 
+1.2. 
+1.
+Prihlasovanie, registrácia
+2.
+Pridávanie tímov, hráčov, klubov, turnajov, zápasov
+3.
+Editovanie záznamov
+4.
+Prezentácia záznamov
+
+2.3. Používateľské rozhrania
+
+Pož. 1
+Používateľské rozhranie musí byť vytvorené formou web aplikácie.
+Pož. 2
+Aktualizácie údajov v rámci tej istej stránky budú vykonané pomocou technológie Inline Editing.
+3
+Admin rozhranie
+
+2.4. Softvérové rozhrania
+
+SSR­1
+
+Projekt bude realizovaný v Pythone / Ruby.
+
+2.5. Iné požiadavky
+
+IP­1
+
+Používateľ pri manipulácii s dátami musí zadať administračné prihlasovacie údaje.
+
+
+Úvodne naplnenie tabuliek, migráciou z dátového zdroja
+
+2.6. Funkcie systému
+Prehľad funkcií, ktoré systém poskytuje je znázornený diagramom prípadov použitia na Obrázku 2.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Obrázok 2: Diagram prípadov použitia systému
+
+2.7. Triedy používateľov a ich vlastnosti
+
+Trieda
+Popis
+Zákazník
+Zákazníkom je ľubovoľná fyzická alebo právnická osoba, ktorá má záujem kúpiť si letenku cez Internet. Nakoľko je systém určený pre širokú verejnosť, žiadne ďalšie obmedzenia alebo požiadavky sa na zákazníka nekladú. Predpokladá sa, že k systému budú zákazníci najčastejšie pristupovať z domu, prípadne zamestnania. Zákazníci budú vyžadovať poslanie elektronickej faktúry. Niektorí zo zákazníkov majú záujem o výber konkrétneho sedadla v lietadle.
+3. Špecifikácia požiadaviek
+1. 
+2. 
+3. 
+3.1. Turnaj CRUD
+1. 
+2. 
+3. 
+3.1. 
+3.1.1. 
+3.1.2. Popis prípadu použitia
+Označenie:
+UC01
+Názov:
+Turnaj CRUD
+Priorita:
+vysoká
+Popis:
+Pridanie, editovanie a mazanie turnajov
+Vstupné podmienky:
+
+Výstupné podmienky:
+
+Opakovanosť:
+Dva krát do mesiaca
+
+Krok
+Činnosť
+Bežná cesta:
+0.1
+Vyplnenie atribútov turnaja
+
+0.2
+Priradenie kategórii do turnaja a vytvorenie tímov do kategórii
+
+0.3
+Pridanie zostavy hráčov do tímov
+
+0.4
+Pridanie zápasov pre tímy
+Alternatívna cesta:
+1
+Použitie prípadu 3.2
+
+
+Vymazanie pomocou tlačidla
+Výnimky:
+-
+-
+
+
+
+
+
+
+
+1. 
+2. 
+3. 
+3.1. 
+3.1.2. Funkčné požiadavky
+
+Označenie
+Popis
+
+Kontrola či boli vyplnené všetky údaje turnaja.
+turnaj.turnaj
+Kontrola, povolených znakov.
+turnaj.mesto
+Mesto musí obsahovať len abecedné znaky.
+turnaj.stat
+Štát musí obsahovať len abecedné znaky.
+turnaj.spirit
+Spirit môže byť len cifra.
+turnaj.datum_zapisu
+Dátum zápisu musí byť existujúci deň v kalendári.
+turnaj.datum_od
+Dátum od musí byť existujúci deň v kalendári a musí byť neskôr ako dátum zápisu.
+turnaj.datum_do
+Dátum do musí byť existujúci deň v kalendári a nesmie byť skôr ako dátum od.
+turnaj.vysledok
+Výsledok môže byť len cifra.
+turnaj.pocet_timov
+Počet tímov môže byť len cifra.
+turnaj.report
+Poznámka k turnaju môže obsahovať všetky znaky.
+
+1. 
+2. 
+3. 
+3.2. Hromadná editácia turnajov
+1. 
+2. 
+3. 
+3.1. 
+3.2. 
+3.2.1. Popis prípadu použitia
+Označenie:
+UC02
+Názov:
+Hromadná edirácia turnajov
+Priorita:
+vysoká
+Popis:
+Všetky atribúty každého turnaja sa budú dať inlinovo editovať na jednom mieste pri zobrazení.
+Vstupné podmienky:
+Užívateľ musí mať minimálne právomoci nahadzovača.
+Výstupné podmienky:
+
+Opakovanosť:
+Nepravidelne
+
+Krok
+Činnosť
+Bežná cesta:
+0.1
+Pri zobrazení sa každý údaj dá inlinovo prepísať.
+Alternatívna cesta:
+1
+Ak sa jedna o jeden turnaj, môže použiť formulár z požiadavky 3.1 
+Výnimky:
+-
+-
+
+1. 
+2. 
+3. 
+3.1. 
+3.2. 
+3.2.2. Funkčné požiadavky
+Označenie
+Popis
+
+Kontrola či boli vyplnené všetky údaje turnaja.
+turnaj.turnaj
+Kontrola, povolených znakov.
+turnaj.mesto
+Mesto musí obsahovať len abecedné znaky.
+turnaj.stat
+Štát musí obsahovať len abecedné znaky.
+turnaj.spirit
+Spirit môže byť len cifra.
+turnaj.datum_zapisu
+Dátum zápisu musí byť existujúci deň v kalendári.
+turnaj.datum_od
+Dátum od musí byť existujúci deň v kalendári a musí byť neskôr ako dátum zápisu.
+turnaj.datum_do
+Dátum do musí byť existujúci deň v kalendári a nesmie byť skôr ako dátum od.
+turnaj.vysledok
+Výsledok môže byť len cifra.
+turnaj.pocet_timov
+Počet tímov môže byť len cifra.
+turnaj.report
+Poznámka k turnaju môže obsahovať všetky znaky.
+
+3.3. Kluby CRUD
+1. 
+2. 
+3. 
+3.1. 
+3.2. 
+3.3. 
+3.3.1. 
+3.3.2. Popis prípadu použitia
+Označenie:
+UC03
+Názov:
+Klubu CRUD
+Priorita:
+nízka
+Popis:
+Pridávanie, mazanie a editovanie klubov.
+Vstupné podmienky:
+Užívateľ musí mať právomoci admina klubu.
+Výstupné podmienky:
+
+Opakovanosť:
+nepravidelná
+
+Krok
+Činnosť
+Bežná cesta:
+0.1
+Užívateľ si jednoducho vo formulári zmení údaje, ktoré potrebuje.
+
+0.2
+Užívateľ potvrdí svoju zmenu.
+Alternatívna cesta:
+1
+Pridanie nového klubu pomocou rovnakého formulára.
+
+2
+Zmazanie existujúceho klubu pomocou tlačidla s potvrdením o rozhodnutí.
+Výnimky:
+V1
+Mazať a vytvárať nové kluby, môže len super admin.
+
+1. 
+2. 
+3. 
+3.1. 
+3.2. 
+3.3. 
+3.3.2. Funkčné požiadavky
+Označenie
+Popis
+klub.klub
+Názov klubu musí byť unikátny.
+
+
+
+
+3.4. Kategórie CRUD
+1. 
+2. 
+3. 
+3.1. 
+3.2. 
+3.3. 
+3.4. 
+3.4.1. 
+3.4.2. Popis prípadu použitia
+Označenie:
+UC04
+Názov:
+Kategórie CRUD
+Priorita:
+stredná
+Popis:
+Pridávanie, mazanie a editácia kategórii.
+Vstupné podmienky:
+Užívateľ musí mať minimálne právomoci nahadzovača.
+Výstupné podmienky:
+
+Opakovanosť:
+nepravidelne
+
+Krok
+Činnosť
+Bežná cesta:
+0.1
+Zadanie názvu novej kategórie.
+
+0.2
+Potvrdenie.
+Alternatívna cesta:
+1
+Editovanie pomocou rovnakého formulára.
+
+2
+Zmazanie pomocou tlačidla.
+Výnimky:
+V1
+Zmazanie kategórie je možné, len v prípade ak nie je kategória priradená k žiadnemu turnaju.
+
+V2
+Názov kategórie pri editovaní nesmie už existovať.
+
+1. 
+2. 
+3. 
+3.1. 
+3.2. 
+3.3. 
+3.4. 
+3.4.2. Funkčné požiadavky
+Označenie
+Popis
+kategoria.nazov
+Unikátny názov kategórie.
+
+
+
+
+3.5. Hráči CRUD
+1. 
+2. 
+3. 
+3.1. 
+3.2. 
+3.3. 
+3.4. 
+3.5. 
+3.5.1. 
+3.5.2. Popis prípadu použitia
+Označenie:
+UC05
+Názov:
+Hráči CRUD
+Priorita:
+vysoká
+Popis:
+Vytváranie, mazanie a editovanie hráčov klubov.
+
+Vstupné podmienky:
+Užívateľ musí mať minimálne právomoci nahadzovača.
+
+Výstupné podmienky:
+
+
+Opakovanosť:
+nepravidelná
+
+
+Krok
+Činnosť
+
+Bežná cesta:
+0.1
+Užívateľ vyplní formulár.
+
+
+0.2
+Užívateľ potvrdí úpravu/pridanie.
+
+Alternatívna cesta:
+1
+Zmazať hráča je možné pomocou tlačidla.
+
+Výnimky:
+V1
+Editovať svoj vlastný profil môže aj hráč.
+
+
+1. 
+2. 
+3. 
+3.1. 
+3.2. 
+3.3. 
+3.4. 
+3.5. 
+3.5.2. Funkčné požiadavky
+Označenie
+Popis
+hrac.meno
+Krstné meno hráča môže obsahovať len alphabetické znaky.
+hrac.heslo
+Heslo pri prihlasovaní do systému.
+hrac.priezvisko
+Priezvisko hráča môže obsahovať len alphabetické znaky.
+hrac.foto
+Fotka hráča bude podporovať len niektoré typy.
+hrac.prezyvka
+Prezývka hráča musí byť unikátna a môže obsahovať len alphabetické znaky. Musí byť udaná.
+
+
+
+3.6. Zobrazovanie reportov
+1. 
+2. 
+3. 
+3.1. 
+3.2. 
+3.3. 
+3.4. 
+3.5. 
+3.6. 
+3.6.1. 
+3.6.2. Popis prípadu použitia
+Označenie:
+UC06
+Názov:
+Zobrazenie reportov
+Priorita:
+stredná
+Popis:
+Zobrazovanie detailných informácii kategórii, hráčov, tímov, turnajov a klubov.
+
+Vstupné podmienky:
+
+
+Výstupné podmienky:
+
+
+Opakovanosť:
+do stokrát denne
+
+
+Krok
+Činnosť
+
+Bežná cesta:
+0.1
+Užívateľ si zvolí kritérium, ktoré si želá zobraziť.
+
+Alternatívna cesta:
+
+Nie sú žiadne.
+
+Výnimky:
+
+Nie sú žiadne.
+
+
+1. 
+2. 
+3. 
+3.1. 
+3.2. 
+3.3. 
+3.4. 
+3.5. 
+3.6. 
+3.6.2. Funkčné požiadavky
+Označenie
+Popis
+zobrazenie.typ
+Typ kritéria zobrazenia (kategórie, hráči, …).
+
+
+
+
+
+
+
+
+
+
+4. Ďalšie požiadavky
+1.1. Výkonnostné požiadavky
+VP­1
+Zobrazenie reportu musí v 90% prípadoch prebehnúť do 20 sekúnd vrátane.
+VP­2
+Odozva na akciu administrátora v 90% prípadoch prebehnúť do 5 sekúnd vrátane.
+
+1.2. Dostupnosť
+D­1
+V pracovné dni počas pracovných hodín musí byť dostupnosť systému 99%.
+D­2
+V pracovné dni mimo pracovných hodín a počas víkendov musí byť dostupnosť systému 95%.
+
+1.3. Bezpečnostné požiadavky
+BP­1
+Pri zadávaní hesla musí komunikácia prebiehať cez bezpečné HTTPS spojenie.
+
+
+
+Príloha A: Dátový slovník
+hráči
+ID
+Meno
+Priezvisko
+Prezývka
+Profil 
+Domáci klub
+Poznámka k hráčovi
+Fotografia
+Identifikačne číslo hráča(unique)
+-
+-
+-
+Linka na facebookový profil
+ID klubu za ktorý hrá (default outsiterz)
+Ľubovoľná pripomienka
+Linka na fotku (avatar) hráča
+kategórie
+ID
+Názov
+Identifikačne číslo kategórie(unique)
+-
+Tímy
+ID
+Názov
+Identifikačne číslo tímu(unique)
+-
+turnaje
+ID
+Názov
+Kategórie
+Dátum od 
+Dátum do
+Počet tímov
+Výsledky
+Spirit
+Zostavy
+Report 
+Mesto
+Štát
+Dátum zápisu
+Identifikačne číslo turnaja(unique)
+-
+Id kategórii ktore klub vyšle na turnaj
+Date-picker
+Date-picker
+Počet tímov z klubu ktoré idu na daný turnaj
+Výsledky zápasov vyslaných tímov
+Body za fair play
+Mená hráčov v tímoch
+Nejaký komentár k turnaju
+-
+-
+-
+Klub
+ID
+Názov
+Identifikačne číslo Klubu(unique)
+-
+
