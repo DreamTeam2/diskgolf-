@@ -80,12 +80,30 @@ def hrac(request):
 from turnaj.views import SimpleTable as SimpleTableTurnaj
 
 def turnaj_hraca (request, id):
+    button = mark_safe('''<form action="#" method="get">Od: <script type="text/javascript"src="http://www.snaphost.com/jquery/Calendar.aspx"></script> &nbsp;Do: <script type="text/javascript">$(function () {$("#SnapHost_Calendar2").datepicker({ showOn: 'both', buttonImage: 'http://www.snaphost.com/jquery/calendar.gif',
+    buttonImageOnly: true, changeMonth: true, showOtherMonths: true, selectOtherMonths: true
+    });});</script>
+    <input name="SnapHost_Calendar2" id="SnapHost_Calendar2" type="text" />
+     <input type="submit" class="btn" value="Click" name="mybtn">
+    </form>''')
     nazov = smart_unicode("Turnaje Hráča")
     hracitimu = HracTimu.objects.filter(hrac = id).values('tim')
     timy = Tim.objects.filter(id__in=hracitimu).values('kategoria_turnaju')
     kategorieTurnajov = KategoriaTurnaju.objects.filter(id__in=timy).values('turnaj')
     hrac = Hrac.objects.filter(id=id)
     queryset = Turnaj.objects.filter(id__in=kategorieTurnajov)
+    
+    if request.GET.get('mybtn') and request.GET.get("SnapHost_Calendar") != "" and request.GET.get("SnapHost_Calendar2") != "":
+        od = request.GET.get("SnapHost_Calendar")
+        od = od.split("/")
+        od = [od[2], od[0], od[1]]
+        od = "-".join(od)
+        do = request.GET.get("SnapHost_Calendar2")
+        do = do.split("/")
+        do = [do[2], do[0], do[1]]
+        do = "-".join(do)
+        queryset= queryset.filter(datum_od__range=[od,do])
+    
     table = SimpleTableTurnaj(queryset)
     RequestConfig(request).configure(table)
     obsah = None
@@ -113,7 +131,7 @@ def turnaj_hraca (request, id):
         pohlavie = 'Pohlavie: ' + smart_unicode(hrac[0].pohlavie) + '<br>'
         profil = "<div class='profil'>" + '<h3>Profil</h3>'+ meno + klub + pohlavie + spirit + '</div>'
         obsah = mark_safe("<h1>" + nazov + " " +smart_unicode(hrac[0].prezivka) + "</h1><section><div class='round'><img src='" + 'https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=320' + "'></div> " + profil + " </section>")
-    return render_to_response("table.html", {"table": table,"nazov": nazov,"obsah":obsah},context_instance=RequestContext(request))
+    return render_to_response("table.html", {"table": table,"nazov": nazov,"obsah":obsah, "button":button},context_instance=RequestContext(request))
    
 
 def hraci_klubu(request,id):

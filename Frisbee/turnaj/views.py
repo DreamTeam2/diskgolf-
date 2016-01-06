@@ -91,15 +91,35 @@ class SimpleTable(BaseSimpleTable):
         
         
 def turnaj(request):
+    button = mark_safe('''<form action="#" method="get">Od: <script type="text/javascript"src="http://www.snaphost.com/jquery/Calendar.aspx"></script> &nbsp;Do: <script type="text/javascript">$(function () {$("#SnapHost_Calendar2").datepicker({ showOn: 'both', buttonImage: 'http://www.snaphost.com/jquery/calendar.gif',
+    buttonImageOnly: true, changeMonth: true, showOtherMonths: true, selectOtherMonths: true
+    });});</script>
+    <input name="SnapHost_Calendar2" id="SnapHost_Calendar2" type="text" />
+     <input type="submit" class="btn" value="Click" name="mybtn">
+    </form>''')
+    
+    queryset = None
+    if request.GET.get('mybtn') and request.GET.get("SnapHost_Calendar") != "" and request.GET.get("SnapHost_Calendar2") != "":
+        od = request.GET.get("SnapHost_Calendar")
+        od = od.split("/")
+        od = [od[2], od[0], od[1]]
+        od = "-".join(od)
+        do = request.GET.get("SnapHost_Calendar2")
+        do = do.split("/")
+        do = [do[2], do[0], do[1]]
+        do = "-".join(do)
+        queryset= Turnaj.objects.filter(datum_od__range=[od,do])
+    else:
+        queryset= Turnaj.objects.all()
+    
     nazov = smart_unicode("Turnaje")
-    queryset = Turnaj.objects.all()
     for turnaj in queryset:
         kategorieturnaju = KategoriaTurnaju.objects.filter(turnaj=turnaj.id)
         turnaj.kategoria = kategorieturnaju
     table = SimpleTable(queryset)
     RequestConfig(request).configure(table)
     obsah = mark_safe("<h1>" + nazov + "</h1><section>" + smart_unicode("Zobrazenie všetkých Turnajov") + "</section>")
-    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah},context_instance=RequestContext(request))
+    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah, "button":button},context_instance=RequestContext(request))
 
     
    # return render (request , "turnaj.html" , {'turnaje': turnaje })
@@ -122,7 +142,7 @@ def zobraz_zapasy_turnaja(request,id):
         table=Zapas.objects.none()
     return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah},context_instance=RequestContext(request))
 
-def zobraz_timi_turnaja(request,id_turnaja):
+def zobraz_timi_turnaja(request,id_turnaja):  
     nazov = smart_unicode("Tímy Turnaja")
     kategorieTurnajov = KategoriaTurnaju.objects.filter(turnaj=id_turnaja)
     queryset= Tim.objects.filter(id__in=kategorieTurnajov)
@@ -137,19 +157,66 @@ def zobraz_timi_turnaja(request,id_turnaja):
     return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah},context_instance=RequestContext(request))
 
 def zobraz_turnaje_statu(request,stat):
+    button = mark_safe('''<form action="#" method="get">Od: <script type="text/javascript"src="http://www.snaphost.com/jquery/Calendar.aspx"></script> &nbsp;Do: <script type="text/javascript">$(function () {$("#SnapHost_Calendar2").datepicker({ showOn: 'both', buttonImage: 'http://www.snaphost.com/jquery/calendar.gif',
+    buttonImageOnly: true, changeMonth: true, showOtherMonths: true, selectOtherMonths: true
+    });});</script>
+    <input name="SnapHost_Calendar2" id="SnapHost_Calendar2" type="text" />
+     <input type="submit" class="btn" value="Click" name="mybtn">
+    </form>''')
+    
+    queryset = None
+    if request.GET.get('mybtn') and request.GET.get("SnapHost_Calendar") != "" and request.GET.get("SnapHost_Calendar2") != "":
+        od = request.GET.get("SnapHost_Calendar")
+        od = od.split("/")
+        od = [od[2], od[0], od[1]]
+        od = "-".join(od)
+        do = request.GET.get("SnapHost_Calendar2")
+        do = do.split("/")
+        do = [do[2], do[0], do[1]]
+        do = "-".join(do)
+        queryset= Turnaj.objects.filter(stat=stat)
+        queryset = queryset.filter(datum_od__range=[od,do])
+    else:
+        queryset= Turnaj.objects.filter(stat=stat)
+    
     nazov = smart_unicode("Turnaje Štátu")
-    queryset= Turnaj.objects.filter(stat=stat)
     table = SimpleTableKlikolNaStat(queryset)
-    obsah = mark_safe("<h1>" + nazov + " " + smart_unicode(queryset[0].stat) + "</h1><section>" + smart_unicode("Zobrazenie turnajov v danom štáte") + "</section>")
+    try:
+        obsah = mark_safe("<h1>" + nazov + " " + smart_unicode(queryset[0].stat) + "</h1><section>" + smart_unicode("Zobrazenie turnajov v danom štáte") + "</section>")
+    except IndexError:
+        obsah = mark_safe("<h1>" + nazov + " " + stat + "</h1><section>" + smart_unicode("Zobrazenie turnajov v danom štáte") + "</section>")
     RequestConfig(request).configure(table)
-    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah},context_instance=RequestContext(request))  
+    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah, "button":button},context_instance=RequestContext(request))  
 
 def zobraz_turnaje_mesta(request,mesto):
+    button = mark_safe('''<form action="#" method="get">Od: <script type="text/javascript"src="http://www.snaphost.com/jquery/Calendar.aspx"></script> &nbsp;Do: <script type="text/javascript">$(function () {$("#SnapHost_Calendar2").datepicker({ showOn: 'both', buttonImage: 'http://www.snaphost.com/jquery/calendar.gif',
+    buttonImageOnly: true, changeMonth: true, showOtherMonths: true, selectOtherMonths: true
+    });});</script>
+    <input name="SnapHost_Calendar2" id="SnapHost_Calendar2" type="text" />
+     <input type="submit" class="btn" value="Click" name="mybtn">
+    </form>''')
+    
+    queryset = None
+    if request.GET.get('mybtn') and request.GET.get("SnapHost_Calendar") != "" and request.GET.get("SnapHost_Calendar2") != "":
+        od = request.GET.get("SnapHost_Calendar")
+        od = od.split("/")
+        od = [od[2], od[0], od[1]]
+        od = "-".join(od)
+        do = request.GET.get("SnapHost_Calendar2")
+        do = do.split("/")
+        do = [do[2], do[0], do[1]]
+        do = "-".join(do)
+        queryset= Turnaj.objects.filter(mesto=mesto)
+        queryset = queryset.filter(datum_od__range=[od,do])
+    else:
+        queryset= Turnaj.objects.filter(mesto=mesto)
+        
     nazov = smart_unicode("Turnaje Mesta")
-    queryset= Turnaj.objects.filter(mesto=mesto)
     table = SimpleTableKlikolNaMesto(queryset)
     RequestConfig(request).configure(table)
-    obsah = mark_safe("<h1>" + nazov + " " + smart_unicode(queryset[0].mesto) + "</h1><section>" + smart_unicode("Zobrazenie turnajov v danom meste") + "</section>")
-    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah},context_instance=RequestContext(request))  
-    
-        
+
+    try:
+        obsah = mark_safe("<h1>" + nazov + " " + smart_unicode(queryset[0].mesto) + "</h1><section>" + smart_unicode("Zobrazenie turnajov v danom meste") + "</section>")
+    except IndexError:
+        obsah = mark_safe("<h1>" + nazov + " " + mesto + "</h1><section>" + smart_unicode("Zobrazenie turnajov v danom meste") + "</section>")
+    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah, "button":button},context_instance=RequestContext(request))  
