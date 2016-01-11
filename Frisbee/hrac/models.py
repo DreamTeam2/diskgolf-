@@ -14,7 +14,7 @@ class Hrac(models.Model):
     klub = models.ForeignKey(Klub, null=True, blank=True)
     krstne_meno = models.CharField(max_length = 50)
     priezvisko = models.CharField(max_length = 50)
-    telefonne_cislo = models.CharField(max_length = 50, null=True)
+    telefonne_cislo = models.CharField(max_length = 50, null=True, blank=True)
     
     moznosti = (
                 (smart_unicode("Muž"), smart_unicode("Muž")),
@@ -22,7 +22,7 @@ class Hrac(models.Model):
                 )
     pohlavie = models.CharField(max_length=5, choices =moznosti, default = "Muž")
     datum_narodenia = models.DateField(default=date.today)
-    miesto_bydliska = models.CharField(max_length=255,null=True)
+    miesto_bydliska = models.CharField(max_length=255,null=True, blank=True)
     
     
     prezivka = models.CharField(max_length = 50)
