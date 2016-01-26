@@ -8,7 +8,6 @@ class Zapas(models.Model):
     kategoria_turnaju = models.ForeignKey(KategoriaTurnaju)
     tim_1 = models.ForeignKey(Tim, related_name='tim', null=False, blank=False, default=None)
     tim_2 = models.ForeignKey(Tim, related_name='%(class)s_tim', null=False, blank=False, default=None)
-    spirit = models.BooleanField(default=True)
     vysledok_1 = models.IntegerField()
     vysledok_2 = models.IntegerField()
     

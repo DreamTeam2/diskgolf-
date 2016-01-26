@@ -34,8 +34,7 @@ class BaseSimpleTable(tables.Table):
     def render_spirit(self,record):
         hracitimu = HracTimu.objects.filter(hrac = record.id).values('tim')
         timy = Tim.objects.filter(id__in=hracitimu).values('zapas_tim')
-        zapasy = Zapas.objects.filter(id__in=timy)
-        spirity = zapasy.filter(spirit=True)
+        spirity = timy.filter(spirit=True)
         return str(len(spirity))
          
     class Meta:
@@ -120,14 +119,16 @@ def turnaj_hraca (request, id):
         do = "-".join(do)
         queryset= queryset.filter(datum_od__range=[od,do])
     
+    for turnaj in queryset:
+        kategorieturnaju = KategoriaTurnaju.objects.filter(turnaj=turnaj.id)
+        turnaj.kategoria = kategorieturnaju
     table = SimpleTableTurnaj(queryset)
     RequestConfig(request).configure(table)
     obsah = None
     if hrac[0].foto != "":
         hracitimu = HracTimu.objects.filter(hrac = id).values('tim')
         timy = Tim.objects.filter(id__in=hracitimu).values('zapas_tim')
-        zapasy = Zapas.objects.filter(id__in=timy)
-        spirity = zapasy.filter(spirit=True)
+        spirity = timy.filter(spirit=True)
         pocetSpiritov = len(spirity)
         meno = 'Meno: ' + smart_unicode(hrac[0].krstne_meno) + ' ' + smart_unicode(hrac[0].priezvisko) + '<br>'
         klub = 'Klub: ' + smart_unicode(hrac[0].klub) + '<br>'
@@ -138,8 +139,7 @@ def turnaj_hraca (request, id):
     else:
         hracitimu = HracTimu.objects.filter(hrac = id).values('tim')
         timy = Tim.objects.filter(id__in=hracitimu).values('zapas_tim')
-        zapasy = Zapas.objects.filter(id__in=timy)
-        spirity = zapasy.filter(spirit=True)
+        spirity = timy.filter(spirit=True)
         pocetSpiritov = len(spirity)
         meno = 'Meno: ' + smart_unicode(hrac[0].krstne_meno) + ' ' + smart_unicode(hrac[0].priezvisko) + '<br>'
         klub = 'Klub: ' + smart_unicode(hrac[0].klub) + '<br>'

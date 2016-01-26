@@ -9,6 +9,7 @@ class Tim(models.Model):
     umiestnenie = models.PositiveSmallIntegerField(default=1, blank=True, null=True)
     nazov = models.CharField(max_length = 50, default = '')
     klub = models.ForeignKey(Klub, null=True, blank=True)
+    spirit = models.BooleanField(default=True)
     
     class Meta:
         verbose_name_plural = 'Timy'

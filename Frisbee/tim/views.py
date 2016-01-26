@@ -17,13 +17,14 @@ from django.utils.encoding import smart_unicode
 
 class BaseSimpleTable(tables.Table):
     zapasy = tables.LinkColumn('zobraz_zapasy_timu',args=[tables.A('id')], orderable=False, empty_values=(), verbose_name= 'Zápasy')
+    spirit = tables.Column(verbose_name= 'Spirit',orderable=True)
     
     def render_zapasy(self,record):
         return mark_safe('<a href="'+reverse("zobraz_zapasy_timu", args=[record.id])+'">Zobraz</a>')
     
     class Meta:
         model = Tim
-        fields = ('umiestnenie',)
+        fields = ('umiestnenie', 'spirit')
         attrs = {"class": "paleblue2"}
         orderable = True
         
@@ -37,7 +38,7 @@ class SimpleTableKlikolTurnaj(BaseSimpleTable):
 
     class Meta:
         model = Tim
-        fields = ('umiestnenie','nazov','klub')
+        fields = ('umiestnenie','nazov','klub', 'spirit')
         attrs = {"class": "paleblue"}
         orderable = True
 
@@ -51,7 +52,7 @@ class SimpleTable(BaseSimpleTable):
     
     class Meta:
         model = Tim
-        fields = ('umiestnenie', 'nazov','turnaj','klub')
+        fields = ('umiestnenie', 'nazov','turnaj','klub', 'spirit')
         attrs = {"class": "paleblue"}
         orderable = True
         
