@@ -91,22 +91,38 @@ class SimpleTable(BaseSimpleTable):
         
         
 def turnaj(request):
-    button = mark_safe('''<form action="#" method="get">Od: <script type="text/javascript"src="http://www.snaphost.com/jquery/Calendar.aspx"></script> &nbsp;Do: <script type="text/javascript">$(function () {$("#SnapHost_Calendar2").datepicker({ showOn: 'both', buttonImage: 'http://www.snaphost.com/jquery/calendar.gif',
-    buttonImageOnly: true, changeMonth: true, showOtherMonths: true, selectOtherMonths: true
-    });});</script>
-    <input name="SnapHost_Calendar2" id="SnapHost_Calendar2" type="text" />
-     <input type="submit" class="btn" value="Click" name="mybtn">
-    </form>''')
+    
+    button = mark_safe('''
+    <form action="#" method="get">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script>
+    $(function() {
+        $( "#start" ).datepicker({ dateFormat: 'dd/mm/yy', showOn: "both", buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif", buttonImageOnly: true}).datepicker("setDate", -365);
+        $( "#end" ).datepicker({ dateFormat: 'dd/mm/yy', showOn: "both", buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif", buttonImageOnly: true }).datepicker("setDate", new Date());
+    });
+    </script>
+  
+    <p>
+        From: <input type="text" id="start" name="start">
+        To: <input type="text" id="end" name="end">
+        <input type="submit" class="btn" value="Filter" name="mybtn">
+    </p>
+  
+    </form>
+    ''')
     
     queryset = None
-    if request.GET.get('mybtn') and request.GET.get("SnapHost_Calendar") != "" and request.GET.get("SnapHost_Calendar2") != "":
-        od = request.GET.get("SnapHost_Calendar")
+    if request.GET.get('mybtn') and request.GET.get("start") and request.GET.get("end"):
+        od = request.GET.get("start")
         od = od.split("/")
-        od = [od[2], od[0], od[1]]
+        od = [od[2], od[1], od[0]]
         od = "-".join(od)
-        do = request.GET.get("SnapHost_Calendar2")
+        do = request.GET.get("end")
         do = do.split("/")
-        do = [do[2], do[0], do[1]]
+        do = [do[2], do[1], do[0]]
         do = "-".join(do)
         queryset= Turnaj.objects.filter(datum_od__range=[od,do])
     else:

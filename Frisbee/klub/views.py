@@ -17,12 +17,6 @@ class SimpleTable(tables.Table):
         attrs = {"class": "paleblue"}
         orderable = True
 
-#def hraci_klubu(request, id):
-#    queryset = Hrac.objects.filter(klub = id)
-#   table = SimpleTableHrac(queryset)
- #   RequestConfig(request).configure(table)
-#    return render_to_response("table.html", {"table": table},context_instance=RequestContext(request))
-
 # Create your views here.
 def klub(request):
     nazov = "Kluby"
