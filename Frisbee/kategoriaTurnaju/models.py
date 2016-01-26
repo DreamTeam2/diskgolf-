@@ -7,6 +7,7 @@ from turnaj.models import Turnaj
 class KategoriaTurnaju(models.Model):
     turnaj = models.ForeignKey(Turnaj)
     kategoria = models.ForeignKey(Kategoria)
+    pocet_timov = models.PositiveSmallIntegerField(default=1, blank=True, null=True)
     
     class Meta:
         verbose_name_plural = 'Kategorie Turnajov'

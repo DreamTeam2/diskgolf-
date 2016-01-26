@@ -17,7 +17,7 @@ class ZapasInlineAdmin(SuperInlineModelAdmin, admin.TabularInline):
     model = Zapas
 
 class KategoriaTurnajuAdminSelf(SuperModelAdmin):
-    list_display = ['turnaj', 'kategoria']
+    list_display = ['turnaj', 'kategoria', 'pocet_timov']
     search_fields = ['turnaj', 'kategoria']
     inlines = (TimInlineAdmin,ZapasInlineAdmin,)
 
