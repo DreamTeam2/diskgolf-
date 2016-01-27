@@ -88,18 +88,18 @@ WSGI_APPLICATION = 'Frisbee.wsgi.application'
 DATABASES = {
     'default':{
         'ENGINE':'django.db.backends.mysql',
-        'NAME': 'frisbee',
+        'NAME': 'frisbee2',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': 'koren',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
 
 
-TEMPLATE_CONTEXT_PROCESSORS = TCP + (
+TEMPLATE_CONTEXT_PROCESSORS = TCP + [
     'django.core.context_processors.request',
-)
+]
 
 SUIT_CONFIG = {
     #'SEARCH_URL': '/admin/hrac/hrac/',
