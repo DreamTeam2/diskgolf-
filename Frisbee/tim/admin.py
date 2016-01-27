@@ -6,8 +6,8 @@ from hrac.admin import HracAdmin
 from zapas.admin import ZapasAdmin2
 
 class TimAdminSelf(admin.ModelAdmin):
-    list_display = ['nazov','kategoria_turnaju', 'klub']
-    list_filter = ['kategoria_turnaju', 'klub']
+    list_display = ['nazov','kategoria_turnaju', 'spirit', 'klub']
+    list_filter = ['kategoria_turnaju', 'klub', 'spirit']
     search_fields = ['nazov']
     inlines = [HracTimuAdmin, ZapasAdmin2]
 
