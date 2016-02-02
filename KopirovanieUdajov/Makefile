@@ -2,4 +2,4 @@ all: src
 	find . -name "*.java" -print | xargs javac -d bin
 	jar cvf import.jar bin
 run: import.jar
-	java -cp import.jar engine.Spracovanie
+	java -Dfile.encoding=UTF-8 -classpath bin:mysql-connector-java-5.1.24.jar:import.jar engine.Spracovanie
