@@ -2,13 +2,7 @@ package konstanty;
 import java.util.ArrayList;
 
 
-public class Konstanty {
-
-	public final static String adresa = "127.0.0.1";
-	public final static String databaza_Frisbee = "Frisbee";
-	public final static String databaza_Vzor = "vzor";
-	public final static String user = "root";
-	public final static String password = "root";
+public class Konstanty extends CustomKonstanty {
 	public final static int maximalnyPocetConnectionov = 100;
 	
 	public final static String openKategoria = "Open";

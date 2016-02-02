@@ -95,7 +95,7 @@ public class Spracovanie {
 				TimFrisbeeModel hladanyTim = new TimFrisbeeModel();
 				hladanyTim.nastavPreColumnHodnotu(Konstanty.frisbeeTableTim_kategoriaTrunajuId, kategoriaTurnajuFrisbee.getHodnotuPreColumn(Konstanty.frisbeeTableKategoriaTurnaju_id));
 				hladanyTim.nastavPreColumnHodnotu(Konstanty.frisbeeTableTim_spirit, turnajFrisbee.getHodnotuPreColumn(Konstanty.vzorTableTurnaje_spirit));
-				hladanyTim.nastavPreColumnHodnotu(Konstanty.frisbeeTableTim_nazov, (String) turnajFrisbee.getHodnotuPreColumn(Konstanty.frisbeeTableTurnaje_nazov) 
+				hladanyTim.nastavPreColumnHodnotu(Konstanty.frisbeeTableTim_nazov, (String) turnajFrisbee.getHodnotuPreColumn(Konstanty.frisbeeTableTurnaje_nazov)
 						+ "_" + nazovKategorie + "_tim");
 				for (DefaultModel team : timiFrisbee){
 					TimFrisbeeModel timFrisbee = (TimFrisbeeModel) team;
@@ -144,7 +144,7 @@ public class Spracovanie {
 				TimFrisbeeModel tim = new TimFrisbeeModel();
 				tim.nastavPreColumnHodnotu(Konstanty.frisbeeTableTim_kategoriaTrunajuId, kategoriaTurnajuFrisbee.getHodnotuPreColumn(Konstanty.frisbeeTableKategoriaTurnaju_id));
 				tim.nastavPreColumnHodnotu(Konstanty.frisbeeTableTim_spirit, turnajVzor.getHodnotuPreColumn(Konstanty.vzorTableTurnaje_spirit));
-				tim.nastavPreColumnHodnotu(Konstanty.frisbeeTableTim_nazov, (String) turnajFrisbee.getHodnotuPreColumn(Konstanty.frisbeeTableTurnaje_nazov) 
+				tim.nastavPreColumnHodnotu(Konstanty.frisbeeTableTim_nazov, (String) turnajFrisbee.getHodnotuPreColumn(Konstanty.frisbeeTableTurnaje_nazov)
 						+ "_" + nazovKategorie + "_tim");
 				timiFrisbee.add(tim);
 			}catch(Exception e){
