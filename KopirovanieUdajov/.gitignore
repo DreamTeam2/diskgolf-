@@ -12,4 +12,4 @@
 hs_err_pid*
 
 # Custom settings (bad practice, should be some properties file application.conf and custom overrides in custom.conf)
-src/main/CustomSettings.java
+src/main/CustomKonstanty.java
