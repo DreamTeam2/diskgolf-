@@ -10,14 +10,14 @@ class Turnaj(models.Model):
     datum_od = None
     datum_do = None
     if day < 6: 
-        datum_od = models.DateField(default=(date.today() - timedelta(days=day+2)))
-        datum_do = models.DateField(default=(date.today() - timedelta(days=day+1)))
+        datum_od = models.DateField(default=(date.today() - timedelta(days=day+2)), null=True, blank=True)
+        datum_do = models.DateField(default=(date.today() - timedelta(days=day+1)), null=True, blank=True)
     else:
-        datum_od = models.DateField(default=(date.today() - timedelta(days=1)))
-        datum_do = models.DateField(default=(date.today()))
-    mesto = models.CharField(max_length = 50, default = '')
-    stat = models.CharField(max_length = 50, default = '')
-    datum_zapisu = models.DateField(default=date.today)
+        datum_od = models.DateField(default=(date.today() - timedelta(days=1)), null=True, blank=True)
+        datum_do = models.DateField(default=(date.today()), null=True, blank=True)
+    mesto = models.CharField(max_length = 50, default = '', null=True, blank=True)
+    stat = models.CharField(max_length = 50, default = '', null=True, blank=True)
+    datum_zapisu = models.DateField(default=date.today, null=True, blank=True)
     report = models.CharField(max_length = 150, default = '', null=True, blank=True)
     
     class Meta:

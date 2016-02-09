@@ -12,16 +12,17 @@ from datetime import date
 class Hrac(models.Model):
     uzivatel = models.ForeignKey(User, null=True, blank=True)
     klub = models.ForeignKey(Klub, null=True, blank=True)
-    krstne_meno = models.CharField(max_length = 50)
-    priezvisko = models.CharField(max_length = 50)
+    krstne_meno = models.CharField(max_length = 50, null=True, blank=True)
+    priezvisko = models.CharField(max_length = 50, null=True, blank=True)
     telefonne_cislo = models.CharField(max_length = 50, null=True, blank=True)
     
     moznosti = (
                 (smart_unicode("Muž"), smart_unicode("Muž")),
                 (smart_unicode("Žena"), smart_unicode("Žena")),
                 )
-    pohlavie = models.CharField(max_length=5, choices =moznosti, default = "Muž")
-    datum_narodenia = models.DateField(default=date.today)
+                
+    pohlavie = models.CharField(max_length=5, choices =moznosti, default = "Muž", null=True, blank=True)
+    datum_narodenia = models.DateField(default=date.today, null=True, blank=True)
     miesto_bydliska = models.CharField(max_length=255,null=True, blank=True)
     
     
