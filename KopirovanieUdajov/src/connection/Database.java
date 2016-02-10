@@ -67,6 +67,18 @@ public class Database {
 		}
 	}
 
+	public void executeUpdate(String SQL) throws SQLException{
+		if (connection != null){
+			connection.createStatement().executeUpdate(SQL);
+		}
+	}
+
+	public void execute(String SQL) throws SQLException {
+		if (connection != null){
+			connection.createStatement().execute(SQL);
+		}
+	}
+
 	protected int getCountQueryOneColumn(String table, String column) throws SQLException, NullPointerException{
 		String SQL = String.format("SELECT COUNT(%s) FROM %s.%s;", column, database, table);
 		
