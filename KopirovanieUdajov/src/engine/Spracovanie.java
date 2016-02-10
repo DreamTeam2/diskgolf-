@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.sql.Date;
 import java.util.HashSet;
 
+import connection.Database;
 import connection.SpracovanieMapper;
 import konstanty.Konstanty;
 import models.DefaultModel;
@@ -45,6 +46,7 @@ public class Spracovanie {
 	}
 
 	private void NamapujUdajeDoNovejDb() throws Exception {
+		PreProcess();
 		StiahniExistujuceUdaje();
 		PripravHracov();
 		VlozHracov();
@@ -62,6 +64,11 @@ public class Spracovanie {
 		VytiahniVlozeneData___Frisbee___Timi();
 		PripravHracovTimov();
 		VlozHracovTimov();
+	}
+
+	private void PreProcess() throws SQLException, ClassNotFoundException {
+		maper.execute(String.format("ALTER TABLE %s MODIFY COLUMN %s date null", Konstanty.vzorTable_turnaje, Konstanty.vzorTableTurnaje_datumDo));
+		maper.executeUpdate(String.format("UPDATE %s SET %s=NULL WHERE %s='0000-00-00';", Konstanty.vzorTable_turnaje, Konstanty.vzorTableTurnaje_datumDo, Konstanty.vzorTableTurnaje_datumDo));
 	}
 
 	private void PripravHracovTimov() {
