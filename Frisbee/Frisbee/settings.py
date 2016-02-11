@@ -31,8 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'super_inlines',
-    'suit',
+    'nested_admin',
+    'grappelli',
     'django_tables2',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -88,18 +88,22 @@ WSGI_APPLICATION = 'Frisbee.wsgi.application'
 DATABASES = {
     'default':{
         'ENGINE':'django.db.backends.mysql',
-        'NAME': 'frisbee2',
+        'NAME': 'frisbee',
         'USER': 'root',
-        'PASSWORD': 'koren',
+        'PASSWORD': '0000',
         'HOST': '127.0.0.1',
         'PORT': '3306',
+    'OPTIONS': {
+         "init_command": "SET foreign_key_checks = 0;",
+    },
     }
 }
 
 
-TEMPLATE_CONTEXT_PROCESSORS = TCP + [
+TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
-]
+
+)
 
 SUIT_CONFIG = {
     #'SEARCH_URL': '/admin/hrac/hrac/',

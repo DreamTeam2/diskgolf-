@@ -6,6 +6,7 @@ class Klub(models.Model):
     
     class Meta:
         verbose_name_plural = 'Kluby'
+        app_label ="hrac"
         
     def __str__(self):
         return self.nazov

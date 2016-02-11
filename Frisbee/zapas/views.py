@@ -6,13 +6,14 @@ from django_tables2 import RequestConfig
 from django.utils.safestring import mark_safe
 from django.core.urlresolvers import reverse
 from django.utils.encoding import smart_unicode
-
+from kategoriaTurnaju.models import KategoriaTurnaju
+from turnaj.models import Turnaj
 
 class SimpleTable(tables.Table):
     vysledok_1 = tables.Column(verbose_name= 'Výsledok',orderable=True)
     tim_1 = tables.LinkColumn('zobraz_hracov_timu', args=[tables.A('tim_1.id')],verbose_name= 'Domáci',orderable=True)
     tim_2 = tables.LinkColumn('zobraz_hracov_timu', args=[tables.A('tim_2.id')],verbose_name= 'Hostia',orderable=True)
-    turnaj = tables.LinkColumn('zobraz_timi_turnaja', args=[tables.A('turnaj.id')],verbose_name= 'Turnaj',orderable=True)
+    turnaj = tables.LinkColumn('zobraz_timi_turnaja', args=[tables.A('turnaj.id')],verbose_name= 'Turnaj',orderable=True,empty_values=())
     
     class Meta:
         model = Zapas
@@ -22,6 +23,10 @@ class SimpleTable(tables.Table):
     
     def render_vysledok_1(self,record):
         return str(record.vysledok_1) + ' : ' + str(record.vysledok_2)
+    def render_turnaj(self,record):
+        kategoriaTurnaju = KategoriaTurnaju.objects.filter(id=record.kategoria_turnaju.id)
+        turnaj = Turnaj.objects.filter(id__in=kategoriaTurnaju)
+        return mark_safe("<a href='turnaj_zapas=" +str(turnaj[0].id)+ "'>"+ unicode(turnaj[0]) +"</a>")
     
 class SimpleTableOdTurnaja(tables.Table):
     vysledok_1 = tables.Column(verbose_name= 'Výsledok',orderable=True)

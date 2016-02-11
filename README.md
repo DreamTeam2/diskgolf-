@@ -11,6 +11,10 @@ Install python 2.7, then:
     pip install django-super-inlines
     sudo apt-get install python-mysqldb
 
+New template 
+    pip install django-grappelli
+    pip install django-nested-admin
+
 Create database frisbee with utf8 charset, e.g.:
     
     CREATE DATABASE frisbee DEFAULT CHARACTER SET utf8;
