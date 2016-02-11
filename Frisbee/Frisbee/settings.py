@@ -100,10 +100,9 @@ DATABASES = {
 }
 
 
-TEMPLATE_CONTEXT_PROCESSORS = TCP + (
+TEMPLATE_CONTEXT_PROCESSORS = TCP + [
     'django.core.context_processors.request',
-
-)
+]
 
 SUIT_CONFIG = {
     #'SEARCH_URL': '/admin/hrac/hrac/',
