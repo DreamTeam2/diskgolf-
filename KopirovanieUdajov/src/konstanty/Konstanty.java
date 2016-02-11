@@ -109,7 +109,7 @@ public class Konstanty extends CustomKonstanty {
 	
 	//FRISBEE
 	
-	public final static String frisbeeTable_turnaje = "turnaj_turnaj";
+	public final static String frisbeeTable_turnaje = "frisbee_turnaj";
 	
 	public final static String frisbeeTableTurnaje_id = "id";
 	public final static String frisbeeTableTurnaje_nazov = "nazov";
@@ -139,7 +139,7 @@ public class Konstanty extends CustomKonstanty {
 		return vysledok;
 	}
 	
-	public final static String frisbeeTable_kategorie = "kategoria_kategoria";
+	public final static String frisbeeTable_kategorie = "frisbee_kategoria";
 	
 	public final static String frisbeeTableKategorie_id = "id";
 	public final static String frisbeeTableKategorie_nazov = "nazov";
@@ -155,7 +155,7 @@ public class Konstanty extends CustomKonstanty {
 		return vysledok;
 	}
 	
-	public final static String frisbeeTable_kategoriaTurnaju = "kategoriaTurnaju_kategoriaturnaju";
+	public final static String frisbeeTable_kategoriaTurnaju = "frisbee_kategoriaturnaju";
 	
 	public final static String frisbeeTableKategoriaTurnaju_id = "id";
 	public final static String frisbeeTableKategoriaTurnaju_kategoriaId = "kategoria_id";
@@ -176,7 +176,7 @@ public class Konstanty extends CustomKonstanty {
 		return vysledok;
 	}
 	
-	public final static String frisbeeTable_hrac = "hrac_hrac";
+	public final static String frisbeeTable_hrac = "frisbee_hrac";
 	
 	public final static String frisbeeTableHrac_id = "id";
 	public final static String frisbeeTableHrac_krstneMeno = "krstne_meno";
@@ -217,7 +217,7 @@ public class Konstanty extends CustomKonstanty {
 	}
 	
 	
-	public final static String frisbeeTable_tim = "tim_tim";
+	public final static String frisbeeTable_tim = "frisbee_tim";
 	
 	public final static String frisbeeTableTim_id = "id";
 	public final static String frisbeeTableTim_nazov = "nazov";
@@ -243,7 +243,7 @@ public class Konstanty extends CustomKonstanty {
 		return vysledok;
 	}
 	
-public final static String frisbeeTable_hracTimu = "hracTimu_hractimu";
+public final static String frisbeeTable_hracTimu = "frisbee_hractimu";
 	
 	public final static String frisbeeTableHracTim_id = "id";
 	public final static String frisbeeTableHracTim_hracId = "hrac_id";
