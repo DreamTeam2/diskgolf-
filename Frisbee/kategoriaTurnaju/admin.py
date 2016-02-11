@@ -6,6 +6,7 @@ from hracTimu.models import HracTimu
 from tim.models import Tim
 from zapas.models import Zapas
 
+
 class HracInlineAdmin(nested_admin.NestedStackedInline):
     model = HracTimu
     extra = 0

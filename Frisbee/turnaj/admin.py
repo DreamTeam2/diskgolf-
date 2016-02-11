@@ -9,6 +9,7 @@ from kategoriaTurnaju.admin import KategoriaTurnajuAdmin
 from zapas.models import Zapas
 
 
+
 class HracInlineAdmin(nested_admin.NestedStackedInline):
     model = HracTimu
     extra = 0

@@ -36,10 +36,9 @@ function showAdminPopup(triggeringLink, name_regexp) {
     } else {
         href  += '&_popup=1';
     }
-
-    // Django JET
-    showRelatedPopup(name, href);
-
+    // GRAPPELLI CUSTOM: changed width
+    var win = window.open(href, name, 'height=500,width=1000,resizable=yes,scrollbars=yes');
+    win.focus();
     return false;
 }
 
@@ -55,27 +54,18 @@ function dismissRelatedLookupPopup(win, chosenId) {
     } else {
         document.getElementById(name).value = chosenId;
     }
-
-    // Django JET
-    closeRelatedPopup(win);
+    // GRAPPELLI CUSTOM: element focus
+    elem.focus();
+    win.close();
 }
 
 function showRelatedObjectPopup(triggeringLink) {
     var name = triggeringLink.id.replace(/^(change|add|delete)_/, '');
     name = id_to_windowname(name);
     var href = triggeringLink.href;
-
-    // Django JET
-    if (href.indexOf('_popup=1') == -1) {
-        if (href.indexOf('?') == -1) {
-            href += '?_popup=1';
-        } else {
-            href += '&_popup=1';
-        }
-    }
-
-    showRelatedPopup(name, href);
-
+    // GRAPPELLI CUSTOM: changed width
+    var win = window.open(href, name, 'height=500,width=1000,resizable=yes,scrollbars=yes');
+    win.focus();
     return false;
 }
 
@@ -99,18 +89,26 @@ function dismissAddRelatedObjectPopup(win, newId, newRepr) {
             } else {
                 elem.value = newId;
             }
+            // GRAPPELLI CUSTOM: element focus
+            elem.focus();
         }
         // Trigger a change event to update related links if required.
-        django.jQuery(elem).trigger('change');
+        grp.jQuery(elem).trigger('change');
     } else {
         var toId = name + "_to";
         o = new Option(newRepr, newId);
         SelectBox.add_to_cache(toId, o);
         SelectBox.redisplay(toId);
     }
+    win.close();
+}
 
-    // Django JET
-    closeRelatedPopup(win);
+// GRAPPELLI CUSTOM
+function removeRelatedObject(triggeringLink) {
+    var id = triggeringLink.id.replace(/^remove_/, '');
+    var elem = document.getElementById(id);
+    elem.value = "";
+    elem.focus();
 }
 
 function dismissChangeRelatedObjectPopup(win, objId, newRepr, newId) {
@@ -118,61 +116,33 @@ function dismissChangeRelatedObjectPopup(win, objId, newRepr, newId) {
     newRepr = html_unescape(newRepr);
     var id = windowname_to_id(win.name).replace(/^edit_/, '');
     var selectsSelector = interpolate('#%s, #%s_from, #%s_to', [id, id, id]);
-    var selects = django.jQuery(selectsSelector);
+    var selects = grp.jQuery(selectsSelector);
     selects.find('option').each(function() {
         if (this.value == objId) {
             this.innerHTML = newRepr;
             this.value = newId;
         }
     });
-
-    // Django JET
-    closeRelatedPopup(win);
+    // GRAPPELLI CUSTOM: element focus
+    elem.focus();
+    win.close();
 };
 
 function dismissDeleteRelatedObjectPopup(win, objId) {
     objId = html_unescape(objId);
     var id = windowname_to_id(win.name).replace(/^delete_/, '');
     var selectsSelector = interpolate('#%s, #%s_from, #%s_to', [id, id, id]);
-    var selects = django.jQuery(selectsSelector);
+    var selects = grp.jQuery(selectsSelector);
     selects.find('option').each(function() {
         if (this.value == objId) {
-            django.jQuery(this).remove();
+            grp.jQuery(this).remove();
         }
     }).trigger('change');
-
-    // Django JET
-    closeRelatedPopup(win);
+    // GRAPPELLI CUSTOM: element focus
+    elem.focus();
+    win.close();
 };
 
 // Kept for backward compatibility
 showAddAnotherPopup = showRelatedObjectPopup;
 dismissAddAnotherPopup = dismissAddRelatedObjectPopup;
-
-// Django JET
-
-opener = parent.window;
-
-function showRelatedPopup(name, href) {
-    django.jQuery(function($) {
-        var $container = $('.related-popup-container', parent.document);
-        var $loading = $container.find('.loading-indicator', parent.document);
-        var $body = $('body').addClass('non-scrollable', parent.document);
-        var $popup = $('<iframe>').attr('name', name).attr('src', href).addClass('related-popup').on('load', function() {
-            $popup.add($('.related-popup-back')).fadeIn(200, 'swing', function() {
-                $loading.hide();
-            });
-        });
-
-        $loading.show();
-        $container.fadeIn(200, 'swing', function() {
-            $container.append($popup);
-        });
-        $body.addClass('non-scrollable', parent.document);
-    });
-}
-
-function closeRelatedPopup(win) {
-    jet.jQuery('select').trigger('select:init');
-    jet.jQuery(win.parent).trigger('related-popup:close');
-}

@@ -4,6 +4,7 @@ from models import Hrac
 from django.contrib.auth.models import User
 from hracTimu.admin import HracTimuAdmin
 
+
 class HracAdminSelf(nested_admin.NestedAdmin):
     list_display = ['prezivka','krstne_meno', 'priezvisko', 'pohlavie', 'telefonne_cislo', 'miesto_bydliska', 'datum_narodenia', 'uzivatel', 'klub', 'foto', 'poznamka']
     list_filter = ['klub']

@@ -13,7 +13,7 @@ class Zapas(models.Model):
     
     class Meta:
         verbose_name_plural = 'Zapasy'
-      #  app_label ="hracTimu"
+        app_label ="hracTimu"
         
     def __str__ (self):
         return str(self.kategoria_turnaju) + ':' + str(self.tim_1) + '-' + str(self.tim_2) 
