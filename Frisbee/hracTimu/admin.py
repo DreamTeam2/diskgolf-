@@ -2,6 +2,7 @@ from django.contrib import admin
 import nested_admin
 from models import HracTimu
 
+
 class HracTimuAdminSelf(nested_admin.NestedAdmin):
     list_display = ['hrac','tim']
     search_fields = ['hrac', 'tim']

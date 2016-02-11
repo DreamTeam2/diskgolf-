@@ -5,6 +5,7 @@ from hracTimu.admin import HracTimuAdmin
 from hrac.admin import HracAdmin
 from zapas.admin import ZapasAdmin2
 
+
 class TimAdminSelf(nested_admin.NestedAdmin):
     list_display = ['nazov','kategoria_turnaju', 'spirit', 'klub']
     list_filter = ['kategoria_turnaju', 'klub', 'spirit']

@@ -9,12 +9,11 @@ from django.utils.encoding import smart_unicode
 from kategoriaTurnaju.models import KategoriaTurnaju
 from turnaj.models import Turnaj
 
-
 class SimpleTable(tables.Table):
     vysledok_1 = tables.Column(verbose_name= 'Výsledok',orderable=True)
     tim_1 = tables.LinkColumn('zobraz_hracov_timu', args=[tables.A('tim_1.id')],verbose_name= 'Domáci',orderable=True)
     tim_2 = tables.LinkColumn('zobraz_hracov_timu', args=[tables.A('tim_2.id')],verbose_name= 'Hostia',orderable=True)
-    turnaj = tables.LinkColumn('zobraz_timi_turnaja', args=[tables.A('turnaj.id')],verbose_name= 'Turnaj',orderable=True, empty_values=())
+    turnaj = tables.LinkColumn('zobraz_timi_turnaja', args=[tables.A('turnaj.id')],verbose_name= 'Turnaj',orderable=True,empty_values=())
     
     class Meta:
         model = Zapas

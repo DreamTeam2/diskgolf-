@@ -13,7 +13,7 @@ class Tim(models.Model):
     
     class Meta:
         verbose_name_plural = 'Timy'
-      #  app_label ="hracTimu"
+        app_label ="hracTimu"
         
     def __str__(self):
         return self.nazov
