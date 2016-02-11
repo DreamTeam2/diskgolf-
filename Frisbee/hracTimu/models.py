@@ -5,12 +5,14 @@ from hrac.models import Hrac
 from tim.models import Tim
 
 
+
 class HracTimu(models.Model):
     tim = models.ForeignKey(Tim)
     hrac = models.ForeignKey(Hrac)
     
     
     class Meta:
+        #app_label ="hracTimu"
         verbose_name_plural = 'Hraci Timov'
         
     def __str__(self):
@@ -21,3 +23,4 @@ class HracTimu(models.Model):
     
     def __unicode__(self): 
         return smart_unicode(unicode(self.hrac) + '->' + unicode(self.tim))
+

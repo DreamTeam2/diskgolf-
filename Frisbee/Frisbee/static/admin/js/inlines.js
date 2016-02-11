@@ -258,12 +258,33 @@
       deleteCssClass: "inline-deletelink",
       deleteText: options.deleteText,
       emptyCssClass: "empty-form",
-      removed: updateInlineLabel,
+      removed:  (function(row) {
+        //hack
+
+        updateInlineLabel(row);
+      }),
       added: (function(row) {
         initPrepopulatedFields(row);
         reinitDateTimeShortCuts();
         updateSelectFilter();
         updateInlineLabel(row);
+
+        //hack
+        var $items = row.closest('.stacked-inline').find('.stacked-inline-list');
+        var $emptyItem = $items.find('.stacked-inline-list-item.empty');
+        var $item = $emptyItem.clone();
+
+        row.find('.inline-deletelink').remove();
+
+        $item.removeClass('empty');
+        $item.find('.stacked-inline-list-item-link').attr('data-inline-related-id', row.attr('id'));
+
+        $emptyItem.before($item);
+
+        $items.find(".inline_label").each(function(i) {
+          var count = i + 1;
+          $(this).html($(this).html().replace(/(#\d+)/g, "#" + count));
+        });
       })
     });
 

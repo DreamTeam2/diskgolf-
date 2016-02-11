@@ -44,6 +44,10 @@ urlpatterns = [
     # kliknutia pri hracovy
     url(r'^turnaj_hraca=(?P<id>[0-9]+)$','hrac.views.turnaj_hraca', name='turnaj_hraca'),
     url(r'^klub_hrac=(?P<id>[0-9]+)$','hrac.views.hraci_klubu', name='hraci_klubu'),
+    url(r'^nested_admin/', include('nested_admin.urls')),
+    url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
+  
+     
 
     
 
