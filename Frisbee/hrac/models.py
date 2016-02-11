@@ -34,7 +34,7 @@ class Hrac(models.Model):
 
     class Meta:
         verbose_name_plural = 'Hraci'
-        app_label ="hrac"
+        app_label ="frisbee"
         
     def __str__(self):
         return self.prezivka

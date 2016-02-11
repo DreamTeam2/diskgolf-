@@ -6,7 +6,7 @@ class Kategoria(models.Model):
     
     class Meta:
         verbose_name_plural = 'Kategorie'
-        app_label ="hrac"
+        app_label ="frisbee"
     
     def __str__(self):
         return self.nazov

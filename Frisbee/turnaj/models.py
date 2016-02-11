@@ -22,7 +22,7 @@ class Turnaj(models.Model):
     
     class Meta:
         verbose_name_plural = 'Turnaje'
-        app_label ="hracTimu"
+        app_label ="frisbee"
         
     def __str__(self):
         return self.nazov
