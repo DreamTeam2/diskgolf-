@@ -155,7 +155,7 @@ public class Konstanty extends CustomKonstanty {
 		return vysledok;
 	}
 	
-	public final static String frisbeeTable_kategoriaTurnaju = "kategoriaTurnaju_kategoriaTurnaju";
+	public final static String frisbeeTable_kategoriaTurnaju = "kategoriaTurnaju_kategoriaturnaju";
 	
 	public final static String frisbeeTableKategoriaTurnaju_id = "id";
 	public final static String frisbeeTableKategoriaTurnaju_kategoriaId = "kategoria_id";
@@ -243,7 +243,7 @@ public class Konstanty extends CustomKonstanty {
 		return vysledok;
 	}
 	
-public final static String frisbeeTable_hracTimu = "hracTimu_hracTimu";
+public final static String frisbeeTable_hracTimu = "hracTimu_hractimu";
 	
 	public final static String frisbeeTableHracTim_id = "id";
 	public final static String frisbeeTableHracTim_hracId = "hrac_id";
