@@ -12,7 +12,7 @@ class HracTimu(models.Model):
     
     
     class Meta:
-        app_label ="hracTimu"
+        app_label ="frisbee"
         verbose_name_plural = 'Hraci Timov'
         
     def __str__(self):

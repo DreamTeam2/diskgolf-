@@ -11,7 +11,7 @@ class KategoriaTurnaju(models.Model):
     
     class Meta:
         verbose_name_plural = 'Kategorie Turnajov'
-        app_label ="hracTimu"
+        app_label ="frisbee"
     
     def __str__(self):
         return self.kategoria

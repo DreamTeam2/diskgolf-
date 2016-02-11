@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'frisbee',
     'turnaj',
     'tim',
     'zapas',
@@ -48,6 +49,7 @@ INSTALLED_APPS = (
     'klub',
     'hrac',
     'hracTimu',
+    
 )
 
 MIDDLEWARE_CLASSES = (
@@ -85,12 +87,25 @@ WSGI_APPLICATION = 'Frisbee.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-from custom_settings import *
+DATABASES = {
+    'default':{
+        'ENGINE':'django.db.backends.mysql',
+        'NAME': 'frisbee',
+        'USER': 'root',
+        'PASSWORD': '0000',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    'OPTIONS': {
+         "init_command": "SET foreign_key_checks = 0;",
+    },
+    }
+}
 
 
-TEMPLATE_CONTEXT_PROCESSORS = TCP + [
+TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
-]
+
+)
 
 SUIT_CONFIG = {
     #'SEARCH_URL': '/admin/hrac/hrac/',
