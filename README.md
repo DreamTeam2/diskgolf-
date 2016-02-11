@@ -9,17 +9,15 @@ Install python 2.7, then:
     pip install django-suit==0.2.15
     pip install django-tables2
     pip install django-super-inlines
-    sudo apt-get install python-mysqldb
-
-New template 
     pip install django-grappelli
     pip install django-nested-admin
+    sudo apt-get install python-mysqldb
 
 Create database frisbee with utf8 charset, e.g.:
     
     CREATE DATABASE frisbee DEFAULT CHARACTER SET utf8;
 
-Edit the settings.py (insert your db user and password):
+Copy custom_settings.py.template to custom_settings.py (insert your db user and password):
 
     DATABASES = {
       'default':{
@@ -34,6 +32,7 @@ Edit the settings.py (insert your db user and password):
     
 Then run following commands:
 
+    ./manage.py makemigrations
     ./manage.py migrate
     ./manage.py createsuperuser
     ./manage.py runserver
