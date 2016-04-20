@@ -6,8 +6,8 @@ package konstanty;
  */
 public class CustomKonstanty {
     public final static String adresa = "127.0.0.1";
-    public final static String databaza_Frisbee = "Frisbee";
+    public final static String databaza_Frisbee = "frisbee";
     public final static String databaza_Vzor = "vzor";
     public final static String user = "root";
-    public final static String password = "root";
+    public final static String password = "koren";
 }

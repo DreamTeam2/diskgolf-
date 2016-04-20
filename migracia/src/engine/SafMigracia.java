@@ -1,3 +1,4 @@
+package engine;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,7 +12,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 //import connection.Database;
 
-public class migracia2 {
+public class SafMigracia {
 	
 	private static JFileChooser ourFileSelector = new JFileChooser();
 	
