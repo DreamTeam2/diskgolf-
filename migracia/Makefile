@@ -4,4 +4,4 @@ all: src
 outsiterz: import.jar
 	java -Dfile.encoding=UTF-8 -classpath bin:mysql-connector-java-5.1.24.jar:import.jar engine.Spracovanie
 saf: import.jar
-	java -Dfile.encoding=UTF-8 -classpath bin:mysql-connector-java-5.1.24.jar:import.jar engine.SafMigracia
+	java -Dfile.encoding=UTF-8 -classpath bin:mysql-connector-java-5.1.24.jar:import.jar engine.SafMigracia saf_data.csv

@@ -4,6 +4,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.concurrent.Semaphore;
 
 import konstanty.Konstanty;
@@ -85,7 +86,7 @@ public class Database {
 		getQuery(SQL);
 		rs.next();
 		
-        return rs.getInt(1);
+    return rs.getInt(1);
 	}
 	
 	
@@ -167,7 +168,9 @@ public class Database {
 	
 	protected boolean InsertUpdateDeleteQuery(String SQL) throws SQLException{
 		if (connection != null){
-			boolean vysledok = connection.createStatement().executeUpdate(SQL) > 0 ? true : false;
+			Statement stmt = connection.createStatement();
+			boolean vysledok = stmt.executeUpdate(SQL, Statement.RETURN_GENERATED_KEYS) > 0 ? true : false;
+			rs = stmt.getGeneratedKeys();
 			return vysledok;
 		}
 		return false;
