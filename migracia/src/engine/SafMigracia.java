@@ -95,9 +95,13 @@ class Hrac{
       hrac.mail = list.get(5); //niesu v DB modely, ignorujem
       hrac.discipliny = list.get(6); //niesu v DB modely, ignorujem
       hrac.klub = list.get(7);
-      hrac.telefon = list.get(8);
-      hrac.suhlas = list.get(9);
-      hrac.user_id = list.get(10);
+      hrac.telefon = list.get(9);
+      hrac.suhlas = list.get(10);
+      if (list.size() == 11) {
+        hrac.user_id = "";
+      } else {
+        hrac.user_id = list.get(11);
+      }
       return hrac;
     } catch(IndexOutOfBoundsException e) {
       throw new IndexOutOfBoundsException("Could not create Hrac from " + list.toString() + ": " + e.getMessage());
@@ -127,7 +131,21 @@ class MojaDatabase extends connection.Database{
     super.CreateConnection();
     for (Hrac u: hraci){
       int klub_id = getOrCreateKlubId(u.klub);
-      String sql = String.format("INSERT INTO frisbee_hrac (krstne_meno, priezvisko, prezivka, pohlavie, datum_narodenia, miesto_bydliska, klub_id, telefonne_cislo) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s')", u.meno, u.priezvisko, u.meno + " " + u.priezvisko, u.gender, new SimpleDateFormat("yyyy-MM-dd").format(u.dat_narodenia), u.bydlisko, klub_id, u.telefon);      
+      String sql = "";
+      if (u.user_id != null && u.user_id != "") {
+        sql = String.format("UPDATE frisbee_hrac SET " +
+          "krstne_meno = '%s', priezvisko = '%s', pohlavie = '%s', " +
+          "datum_narodenia = '%s', miesto_bydliska = '%s', " +
+          "klub_id = '%s', telefonne_cislo = '%s' " +
+          "WHERE old_id = '%s'",
+          u.meno, u.priezvisko, u.gender, new SimpleDateFormat("yyyy-MM-dd").format(u.dat_narodenia), u.bydlisko, klub_id, u.telefon, u.user_id
+          );
+      } else {
+        sql = String.format("INSERT INTO frisbee_hrac " +
+          "(krstne_meno, priezvisko, prezivka, pohlavie, datum_narodenia, miesto_bydliska, klub_id, telefonne_cislo, old_id) " +
+          "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s', NULL)",
+          u.meno, u.priezvisko, u.meno + " " + u.priezvisko, u.gender, new SimpleDateFormat("yyyy-MM-dd").format(u.dat_narodenia), u.bydlisko, klub_id, u.telefon);
+      }
       System.out.println(sql);
       super.InsertUpdateDeleteQuery(sql);
     }

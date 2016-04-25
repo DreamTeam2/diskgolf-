@@ -179,6 +179,7 @@ public class Konstanty extends CustomKonstanty {
 	public final static String frisbeeTable_hrac = "frisbee_hrac";
 	
 	public final static String frisbeeTableHrac_id = "id";
+	public final static String frisbeeTableHrac_oldId = "old_id";
 	public final static String frisbeeTableHrac_krstneMeno = "krstne_meno";
 	public final static String frisbeeTableHrac_priezvisko = "priezvisko";
 	public final static String frisbeeTableHrac_prezivka = "prezivka";
@@ -197,11 +198,12 @@ public class Konstanty extends CustomKonstanty {
 		frisbeeTableHrac_poznamka, frisbeeTableHrac_pohlavie, frisbeeTableHrac_datumNarodenia,
 		frisbeeTableHrac_miestoBydliska, frisbeeTableHrac_telefonneCislo};
 	public final static String[] stlpceTabulkyFrisbee_hracNonString = {frisbeeTableHrac_id,
-		frisbeeTableHrac_klubId, frisbeeTableHrac_uzivatelId};
+		frisbeeTableHrac_oldId, frisbeeTableHrac_klubId, frisbeeTableHrac_uzivatelId};
 			
 	private static ArrayList<String> DajStlpceHracFrisbee() {
 		ArrayList<String> vysledok = new ArrayList<String>();
 		vysledok.add(frisbeeTableHrac_id);
+		vysledok.add(frisbeeTableHrac_oldId);
 		vysledok.add(frisbeeTableHrac_krstneMeno);
 		vysledok.add(frisbeeTableHrac_priezvisko);
 		vysledok.add(frisbeeTableHrac_prezivka);

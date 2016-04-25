@@ -218,6 +218,7 @@ public class OutsiterzMigracia {
 		this.hraciFrisbee = new HashSet<DefaultModel>();
 		for (HracVzorModel vzorKategoria: vsetciHraci){
 			HracFrisbeeModel frisbeeHrac = new HracFrisbeeModel();
+			frisbeeHrac.nastavPreColumnHodnotu(Konstanty.frisbeeTableHrac_oldId, vzorKategoria.getHodnotuPreColumn(Konstanty.vzorTableHraci_id));
 			frisbeeHrac.nastavPreColumnHodnotu(Konstanty.frisbeeTableHrac_krstneMeno, vzorKategoria.getHodnotuPreColumn(Konstanty.vzorTableHraci_krstne));
 			frisbeeHrac.nastavPreColumnHodnotu(Konstanty.frisbeeTableHrac_priezvisko, vzorKategoria.getHodnotuPreColumn(Konstanty.vzorTableHraci_priezvisko));
 			frisbeeHrac.nastavPreColumnHodnotu(Konstanty.frisbeeTableHrac_prezivka, vzorKategoria.getHodnotuPreColumn(Konstanty.vzorTableHraci_prezyvka));

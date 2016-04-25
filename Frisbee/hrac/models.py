@@ -12,6 +12,7 @@ from datetime import date
 class Hrac(models.Model):
     uzivatel = models.ForeignKey(User, null=True, blank=True)
     klub = models.ForeignKey(Klub, null=True, blank=True)
+    old_id = models.PositiveIntegerField(null=True, blank=True)
     krstne_meno = models.CharField(max_length = 50, null=True, blank=True)
     priezvisko = models.CharField(max_length = 50, null=True, blank=True)
     telefonne_cislo = models.CharField(max_length = 50, null=True, blank=True)
