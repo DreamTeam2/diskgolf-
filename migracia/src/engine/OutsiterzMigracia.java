@@ -21,7 +21,7 @@ import models.vzor.TurnajVzorModel;
 import models.vzor.ZostavaVzorModel;
 
 
-public class Spracovanie {
+public class OutsiterzMigracia {
 	private ArrayList<TurnajVzorModel> vsetkyTurnaje;
 	private ArrayList<HracVzorModel> vsetciHraci;
 	private ArrayList<KategoriaVzorModel> vsetkyKategorie;
@@ -36,13 +36,12 @@ public class Spracovanie {
 	
 	private SpracovanieMapper maper;
 	
-	private Spracovanie(){
+	private OutsiterzMigracia(){
 		this.maper = new SpracovanieMapper();
 	}
 
 	public static void main(String[] args) throws Exception{
-		Spracovanie mapovanie = new Spracovanie();
-		mapovanie.NamapujUdajeDoNovejDb();
+		new OutsiterzMigracia().NamapujUdajeDoNovejDb();
 	}
 
 	private void NamapujUdajeDoNovejDb() throws Exception {
