@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-from django.shortcuts import render, render_to_response,RequestContext
+from django.shortcuts import render, render_to_response
 from .models import Zapas
 import django_tables2 as tables
 from django_tables2 import RequestConfig
@@ -48,5 +48,5 @@ def zapas(request):
     table = SimpleTable(queryset)
     RequestConfig(request).configure(table)
     obsah = mark_safe(smart_unicode("<h1>" + nazov + "</h1><section>Zobrazenie všetkých Zápasou </section>"))
-    return render_to_response("table.html", {"table": table,"nazov": nazov,"obsah":obsah},context_instance=RequestContext(request))
+    return render_to_response("table.html", {"table": table,"nazov": nazov,"obsah":obsah})
 # Create your views here.

@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-from django.shortcuts import render, render_to_response, RequestContext
+from django.shortcuts import render, render_to_response
 from .models import Hrac
 from hracTimu.models import HracTimu
 from kategoriaTurnaju.models import KategoriaTurnaju
@@ -74,7 +74,7 @@ def hrac(request):
     obsah = mark_safe("<h1>" + nazov + "</h1><section>Zobrazenie všetkých hráčov </section>")
     table = SimpleTable(queryset)
     RequestConfig(request).configure(table)
-    return render_to_response("table.html", {"table": table,"nazov": nazov,"obsah":obsah },context_instance=RequestContext(request))
+    return render_to_response("table.html", {"table": table,"nazov": nazov,"obsah":obsah })
 
 from turnaj.views import SimpleTable as SimpleTableTurnaj
 
@@ -147,7 +147,7 @@ def turnaj_hraca (request, id):
         pohlavie = 'Pohlavie: ' + smart_unicode(hrac[0].pohlavie) + '<br>'
         profil = "<div class='profil'>" + '<h3>Profil</h3>'+ meno + klub + pohlavie + spirit + '</div>'
         obsah = mark_safe("<h1>" + nazov + " " +smart_unicode(hrac[0].prezivka) + "</h1><section><div class='round'><img src='" + 'https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=320' + "'></div> " + profil + " </section>")
-    return render_to_response("table.html", {"table": table,"nazov": nazov,"obsah":obsah, "button":button},context_instance=RequestContext(request))
+    return render_to_response("table.html", {"table": table,"nazov": nazov,"obsah":obsah, "button":button})
    
 
 def hraci_klubu(request,id):
@@ -165,5 +165,5 @@ def hraci_klubu(request,id):
     else:
         obsah = mark_safe("<h1>NEEXISTUJÚ HRÁČI PRE DANÝ KLUB</h1>")
     RequestConfig(request).configure(table)
-    return render_to_response("table.html", {"table": table,"nazov": nazov,"obsah":obsah},context_instance=RequestContext(request))
+    return render_to_response("table.html", {"table": table,"nazov": nazov,"obsah":obsah})
     

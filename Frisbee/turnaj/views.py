@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-from django.shortcuts import render,get_object_or_404,render_to_response,RequestContext
+from django.shortcuts import render,get_object_or_404,render_to_response
 from .models import Turnaj
 from zapas.models import Zapas
 from tim.models import Tim
@@ -135,7 +135,7 @@ def turnaj(request):
     table = SimpleTable(queryset)
     RequestConfig(request).configure(table)
     obsah = mark_safe("<h1>" + nazov + "</h1><section>" + smart_unicode("Zobrazenie všetkých Turnajov") + "</section>")
-    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah, "button":button},context_instance=RequestContext(request))
+    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah, "button":button})
 
     
    # return render (request , "turnaj.html" , {'turnaje': turnaje })
@@ -156,7 +156,7 @@ def zobraz_zapasy_turnaja(request,id):
     except IndexError:
         obsah = mark_safe("<h1>NEEXISTUJU ZÁPASY PRE DANÝ TURNAJ</h1>")
         table=Zapas.objects.none()
-    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah},context_instance=RequestContext(request))
+    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah})
 
 def zobraz_timi_turnaja(request,id_turnaja):  
     nazov = smart_unicode("Tímy Turnaja")
@@ -170,7 +170,7 @@ def zobraz_timi_turnaja(request,id_turnaja):
         obsah = mark_safe("<h1>" + nazov + " " + smart_unicode(turnaj[0]) + "</h1><section" + smart_unicode("Zobrazenie Tímov  Turnaja ") + "</section>")
     except IndexError:
         obsah = mark_safe("<h1>NEEXISTUJU TÍMY PRE DANÝ TURNAJ</h1>")
-    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah},context_instance=RequestContext(request))
+    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah})
 
 def zobraz_turnaje_statu(request,stat):
     button = mark_safe('''
@@ -220,7 +220,7 @@ def zobraz_turnaje_statu(request,stat):
     except IndexError:
         obsah = mark_safe("<h1>" + nazov + " " + stat + "</h1><section>" + smart_unicode("Zobrazenie turnajov v danom štáte") + "</section>")
     RequestConfig(request).configure(table)
-    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah, "button":button},context_instance=RequestContext(request))  
+    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah, "button":button})  
 
 def zobraz_turnaje_mesta(request,mesto):
     button = mark_safe('''
@@ -271,4 +271,4 @@ def zobraz_turnaje_mesta(request,mesto):
         obsah = mark_safe("<h1>" + nazov + " " + smart_unicode(queryset[0].mesto) + "</h1><section>" + smart_unicode("Zobrazenie turnajov v danom meste") + "</section>")
     except IndexError:
         obsah = mark_safe("<h1>" + nazov + " " + mesto + "</h1><section>" + smart_unicode("Zobrazenie turnajov v danom meste") + "</section>")
-    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah, "button":button},context_instance=RequestContext(request))  
+    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah, "button":button})  

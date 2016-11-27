@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render_to_response, RequestContext, render
+from django.shortcuts import render_to_response, render
 from .models import Klub
 from hrac.models import Hrac
 from hrac.views import SimpleTable as SimpleTableHrac

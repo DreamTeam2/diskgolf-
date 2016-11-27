@@ -5,12 +5,7 @@
 
 Install python 2.7, then:
 
-    pip install Django
-    pip install django-suit==0.2.15
-    pip install django-tables2
-    pip install django-super-inlines
-    pip install django-grappelli
-    pip install django-nested-admin
+    pip install -r requirements.txt
     sudo apt-get install python-mysqldb
 
 Create database frisbee with utf8 charset, e.g.:

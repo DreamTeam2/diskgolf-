@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-from django.shortcuts import render,render_to_response,RequestContext
+from django.shortcuts import render,render_to_response
 from .models import Tim
 from django.db.models import Q
 from hrac.models import Hrac
@@ -67,7 +67,7 @@ def tim(request):
     table = SimpleTable(queryset)
     RequestConfig(request).configure(table)
     obsah = mark_safe("<h1>" + nazov + "</h1><section>"+smart_unicode("Zobrazenie všetkých tímov")+ "</section>")
-    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah},context_instance=RequestContext(request))
+    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah})
 
 from hrac.views import SimpleTable as SimpleTableHrac
 from hrac.views import SimpleTableKlikolNaKlub
@@ -81,21 +81,21 @@ def zobraz_hracov_timu(request, id_timu):
     tim = Tim.objects.filter(id=id_timu)
     obsah = mark_safe("<h1>" + nazov + " " + smart_unicode(tim[0].nazov) + "</h1><section>"+smart_unicode("Zobrazenie hráčov daného tímu")+ "</section>")
     RequestConfig(request).configure(table)
-    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah},context_instance=RequestContext(request))
+    return render_to_response("table.html", {"table": table,"nazov":nazov,"obsah":obsah})
 
 def zobraz_hracov_klubu(request, id_klubu):
     nazov = smart_unicode("Hráči Klubu")
     queryset = Hrac.objects.filter(klub=id_klubu)
     table = SimpleTableKlikolNaKlub(queryset)
     RequestConfig(request).configure(table)
-    return render_to_response("table.html", {"table": table,"nazov": nazov},context_instance=RequestContext(request))
+    return render_to_response("table.html", {"table": table,"nazov": nazov})
 
 def zobraz_timi_turnaja(request, id_turnaja):
     nazov = smart_unicode("Tímy Turnaja")
     queryset = Tim.objects.filter(turnaj=id_turnaja)
     table = SimpleTable(queryset)
     RequestConfig(request).configure(table)
-    return render_to_response("table.html", {"table": table,"nazov":nazov},context_instance=RequestContext(request))
+    return render_to_response("table.html", {"table": table,"nazov":nazov})
 
 def zobraz_zapasy_timu(request, id_timu):
     nazov = smart_unicode("Zápasy Tímu")
@@ -104,4 +104,4 @@ def zobraz_zapasy_timu(request, id_timu):
     RequestConfig(request).configure(table)
     tim = Tim.objects.filter(id=id_timu)
     obsah = mark_safe("<h1>" + nazov + " " + smart_unicode(tim[0].nazov) + "</h1><section>"+smart_unicode("Zobrazenie zápasov daného tímu")+ "</section>")
-    return render_to_response("table.html", {"table": table,"nazov":nazov, 'obsah': obsah},context_instance=RequestContext(request))
+    return render_to_response("table.html", {"table": table,"nazov":nazov, 'obsah': obsah})

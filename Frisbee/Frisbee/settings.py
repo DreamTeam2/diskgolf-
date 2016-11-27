@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -82,13 +81,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Frisbee.wsgi.application'
-
-from custom_settings import *
-
-TEMPLATE_CONTEXT_PROCESSORS = TCP + (
-    'django.core.context_processors.request',
-
-)
 
 SUIT_CONFIG = {
     #'SEARCH_URL': '/admin/hrac/hrac/',
